@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mensajes - Dental Bot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <i class="fas fa-tooth"></i>
+          <span>Dental Bot</span>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="../index.html" class="nav-item">
+          <i class="fas fa-home"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="appointments.html" class="nav-item">
+          <i class="fas fa-calendar-check"></i>
+          <span>Citas</span>
+        </a>
+        <a href="patients.html" class="nav-item">
+          <i class="fas fa-users"></i>
+          <span>Pacientes</span>
+        </a>
+        <a href="calendar.html" class="nav-item">
+          <i class="fas fa-calendar-alt"></i>
+          <span>Calendario</span>
+        </a>
+        <a href="messages.html" class="nav-item active">
+          <i class="fas fa-comments"></i>
+          <span>Mensajes</span>
+        </a>
+        <a href="services.html" class="nav-item">
+          <i class="fas fa-list"></i>
+          <span>Servicios</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+          <i class="fas fa-cog"></i>
+          <span>Configuración</span>
+        </a>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar">
+            <i class="fas fa-user-md"></i>
+          </div>
+          <div class="user-details">
+            <span class="user-name">Admin</span>
+            <span class="user-role">Clínica Dental</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <button class="menu-toggle" id="menuToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="header-right">
+          <button class="theme-toggle" id="themeToggle" title="Cambiar tema">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+          </button>
+          <div class="notifications">
+            <button class="btn-icon" id="notificationBtn" data-tooltip="Notificaciones">
+              <i class="fas fa-bell"></i>
+              <span class="badge" id="notificationBadge">0</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="content">
+        <div class="page-header">
+          <h1>Mensajes</h1>
+          <p class="subtitle">Historial de mensajes del bot</p>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" class="form-input" id="searchInput" placeholder="Buscar mensajes...">
+          </div>
+          <select class="form-select" id="channelFilter" style="width: 150px;">
+            <option value="">Todos los canales</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="instagram">Instagram</option>
+          </select>
+          <select class="form-select" id="directionFilter" style="width: 150px;">
+            <option value="">Todas las direcciones</option>
+            <option value="inbound">Entrante</option>
+            <option value="outbound">Saliente</option>
+          </select>
+          <button class="btn btn-secondary" id="clearFilters">
+            <i class="fas fa-times"></i> Limpiar
+          </button>
+        </div>
+
+        <!-- Messages Table -->
+        <div class="card">
+          <div class="card-header">
+            <h2><i class="fas fa-comments"></i> Historial de Mensajes</h2>
+            <span id="totalCount">0 mensajes</span>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table" id="messagesTable">
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Canal</th>
+                    <th>Dirección</th>
+                    <th>Paciente</th>
+                    <th>Mensaje</th>
+                    <th>Tipo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="empty-state">
+                    <td colspan="6">
+                      <div class="loading-container">
+                        <div class="spinner"></div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  </div>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/messages.js"></script>
+</body>
+</html>

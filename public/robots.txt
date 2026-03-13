@@ -1,0 +1,15 @@
+# robots.txt for Beauté Clínica
+# https://www.beaute.cr
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.beaute.cr/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10
+
+# Disallow admin routes (when implemented)
+# Disallow: /admin/
+# Disallow: /api/

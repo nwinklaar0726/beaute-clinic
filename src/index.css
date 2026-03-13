@@ -1,0 +1,657 @@
+/* ============================================
+   BEAUTÉ - DESIGN SYSTEM
+   Brandbook 2025 | Dra. Meyryn Carrillo
+   ============================================ */
+
+/* --------------------------------------------
+   FONTS IMPORT
+   -------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --------------------------------------------
+   CUSTOM FONTS - Dream Orphans
+   -------------------------------------------- */
+@font-face {
+  font-family: 'Dream Orphans';
+  src: url('/fonts/DreamOrphans-Regular.woff2') format('woff2'),
+       url('/fonts/DreamOrphans-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Dream Orphans';
+  src: url('/fonts/DreamOrphans-Italic.woff2') format('woff2'),
+       url('/fonts/DreamOrphans-Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Dream Orphans';
+  src: url('/fonts/DreamOrphans-Bold.woff2') format('woff2'),
+       url('/fonts/DreamOrphans-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bestand';
+  src: url('/fonts/Bestand.woff2') format('woff2'),
+       url('/fonts/Bestand.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Apollo';
+  src: url('/fonts/Apollo.woff2') format('woff2'),
+       url('/fonts/Apollo.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------------------------------------------
+   CSS VARIABLES - Design Tokens
+   -------------------------------------------- */
+@layer base {
+  :root {
+    /* Base shadcn variables */
+    --background: 30 30% 96%;
+    --foreground: 30 45% 18%;
+    --card: 30 25% 97%;
+    --card-foreground: 30 45% 18%;
+    --popover: 30 25% 97%;
+    --popover-foreground: 30 45% 18%;
+    --primary: 42 60% 42%;
+    --primary-foreground: 30 25% 97%;
+    --secondary: 25 25% 58%;
+    --secondary-foreground: 30 25% 97%;
+    --muted: 30 15% 90%;
+    --muted-foreground: 30 15% 45%;
+    --accent: 0 25% 56%;
+    --accent-foreground: 30 25% 97%;
+    --destructive: 0 30% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 15% 85%;
+    --input: 30 15% 85%;
+    --ring: 42 60% 42%;
+    --radius: 0.625rem;
+    
+    /* Sidebar */
+    --sidebar-background: 30 25% 97%;
+    --sidebar-foreground: 30 45% 18%;
+    --sidebar-primary: 42 60% 42%;
+    --sidebar-primary-foreground: 30 25% 97%;
+    --sidebar-accent: 30 15% 90%;
+    --sidebar-accent-foreground: 30 45% 18%;
+    --sidebar-border: 30 15% 85%;
+    --sidebar-ring: 42 60% 42%;
+
+    /* Brand Colors */
+    --beute-cream: #FAEFE6;
+    --beute-cream-light: #FDF8F3;
+    --beute-cream-dark: #F5E6D8;
+    --beute-nude: #F6F2EF;
+    --beute-nude-light: #FAF8F6;
+    --beute-nude-dark: #EDE8E3;
+    
+    --beute-earth-deep: #51350C;
+    --beute-earth-medium: #925F42;
+    --beute-earth-light: #B8936F;
+    --beute-earth-muted: #D4C4B0;
+    
+    --beute-gold: #AC802A;
+    --beute-gold-light: #C9A961;
+    --beute-gold-pale: #E8D5A8;
+    --beute-gold-dark: #8A6B20;
+    --beute-gold-muted: #C4A055;
+    
+    --beute-rose: #A97574;
+    --beute-rose-light: #D2A4A1;
+    --beute-rose-pale: #F5D6D3;
+    
+    --beute-taupe: #A48D82;
+    --beute-taupe-light: #D9CAC1;
+    --beute-taupe-pale: #FAEFE6;
+    
+    --beute-olive: #59533C;
+    --beute-olive-light: #837F67;
+    --beute-olive-pale: #C4BCA3;
+
+    /* Typography Scale */
+    --font-display: 'Dream Orphans', serif;
+    --font-body: 'Lato', sans-serif;
+    --font-accent: 'Bestand', cursive;
+    
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --space-4xl: 6rem;
+    --space-5xl: 8rem;
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px rgba(81, 53, 12, 0.06);
+    --shadow-soft-lg: 0 8px 40px rgba(81, 53, 12, 0.08);
+    --shadow-gold: 0 4px 20px rgba(172, 128, 42, 0.25);
+    --shadow-gold-lg: 0 8px 30px rgba(172, 128, 42, 0.3);
+    
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-luxury: 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+/* --------------------------------------------
+   BASE STYLES
+   -------------------------------------------- */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  body {
+    @apply bg-beute-cream text-beute-earth-deep font-lato;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    font-variation-settings: normal;
+    overflow-x: hidden;
+  }
+  
+  /* Selection */
+  ::selection {
+    background: rgba(172, 128, 42, 0.25);
+    color: #51350C;
+  }
+  
+  /* Headings - Dream Orphans */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-dream text-beute-earth-deep;
+    font-feature-settings: "kern" 1, "liga" 1;
+    letter-spacing: 0.01em;
+  }
+  
+  h1 {
+    @apply text-display-1;
+  }
+  
+  h2 {
+    @apply text-display-2;
+  }
+  
+  h3 {
+    @apply text-display-3;
+  }
+  
+  h4 {
+    @apply text-heading-1;
+  }
+  
+  h5 {
+    @apply text-heading-2;
+  }
+  
+  h6 {
+    @apply text-heading-3;
+  }
+  
+  /* Body text - Lato Light for elegance */
+  p {
+    @apply text-body text-beute-earth-medium;
+    font-weight: 300;
+  }
+  
+  /* Links */
+  a {
+    @apply transition-colors duration-250;
+  }
+  
+  /* Focus states */
+  :focus-visible {
+    @apply outline-none ring-2 ring-beute-gold/50 ring-offset-2 ring-offset-beute-cream;
+  }
+  
+  /* Images */
+  img {
+    @apply max-w-full h-auto;
+  }
+}
+
+/* --------------------------------------------
+   COMPONENT STYLES
+   -------------------------------------------- */
+@layer components {
+  
+  /* ------------------------------------------
+     BUTTONS - Luxury Medical Style
+     ------------------------------------------ */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 
+           font-lato font-semibold text-sm tracking-wide uppercase
+           rounded-full transition-all duration-300
+           disabled:opacity-50 disabled:cursor-not-allowed
+           active:scale-[0.98];
+  }
+  
+  /* Primary Gold Button */
+  .btn-primary {
+    @apply btn px-8 py-3.5;
+    background: linear-gradient(135deg, #AC802A 0%, #C9A961 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(172, 128, 42, 0.3);
+  }
+  
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #C9A961 0%, #AC802A 100%);
+    box-shadow: 0 6px 25px rgba(172, 128, 42, 0.4);
+    transform: translateY(-2px);
+  }
+  
+  .btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(172, 128, 42, 0.3);
+  }
+  
+  /* Secondary Outline Button */
+  .btn-secondary {
+    @apply btn px-8 py-3.5 bg-transparent border-2 border-beute-earth-deep text-beute-earth-deep;
+  }
+  
+  .btn-secondary:hover {
+    @apply bg-beute-earth-deep text-white;
+    box-shadow: 0 4px 15px rgba(81, 53, 12, 0.2);
+  }
+  
+  /* Ghost Button */
+  .btn-ghost {
+    @apply btn px-6 py-3 text-beute-earth-medium hover:text-beute-gold bg-transparent;
+  }
+  
+  /* White Button (for dark backgrounds) */
+  .btn-white {
+    @apply btn px-8 py-3.5 bg-white text-beute-earth-deep;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-white:hover {
+    @apply bg-beute-cream;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+  
+  /* Legacy button classes (maintain compatibility) */
+  .btn-gold {
+    @apply btn-primary;
+  }
+  
+  .btn-outline-gold {
+    @apply btn px-8 py-3.5 bg-transparent border-2 border-beute-gold text-beute-gold;
+  }
+  
+  .btn-outline-gold:hover {
+    @apply bg-beute-gold text-white;
+    box-shadow: 0 4px 15px rgba(172, 128, 42, 0.3);
+  }
+  
+  /* ------------------------------------------
+     CARDS - Elegant with soft shadows
+     ------------------------------------------ */
+  .card {
+    @apply bg-beute-nude rounded-2xl overflow-hidden;
+    box-shadow: 0 4px 20px rgba(81, 53, 12, 0.05);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .card:hover {
+    box-shadow: 0 12px 40px rgba(81, 53, 12, 0.1);
+    transform: translateY(-4px);
+  }
+  
+  .card-elegant {
+    @apply card;
+  }
+  
+  /* Card variants */
+  .card-glass {
+    @apply bg-white/80 backdrop-blur-xl rounded-2xl overflow-hidden;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px rgba(81, 53, 12, 0.08);
+  }
+  
+  .card-glass:hover {
+    box-shadow: 0 12px 48px rgba(81, 53, 12, 0.12);
+  }
+  
+  .card-border {
+    @apply bg-beute-nude rounded-2xl overflow-hidden;
+    border: 1px solid rgba(81, 53, 12, 0.08);
+  }
+  
+  /* ------------------------------------------
+     FORMS - Medical Clean Aesthetic
+     ------------------------------------------ */
+  .input {
+    @apply w-full px-4 py-3.5 rounded-lg font-lato text-beute-earth-deep
+           bg-white/60 border border-beute-taupe-light/50
+           placeholder:text-beute-taupe/70
+           transition-all duration-250;
+  }
+  
+  .input:hover {
+    @apply bg-white/80 border-beute-taupe/70;
+  }
+  
+  .input:focus {
+    @apply bg-white border-beute-gold ring-2 ring-beute-gold/20 outline-none;
+  }
+  
+  .input-error {
+    @apply border-beute-error focus:border-beute-error focus:ring-beute-error/20;
+  }
+  
+  .label {
+    @apply block text-xs font-lato font-semibold uppercase tracking-widest text-beute-earth-medium mb-2;
+  }
+  
+  .input-group {
+    @apply relative;
+  }
+  
+  .input-icon {
+    @apply absolute left-4 top-1/2 -translate-y-1/2 text-beute-gold w-5 h-5;
+  }
+  
+  .input-with-icon {
+    @apply input pl-12;
+  }
+  
+  /* ------------------------------------------
+     TYPOGRAPHY UTILITIES
+     ------------------------------------------ */
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #AC802A 0%, #C9A961 50%, #E8D5A8 100%);
+  }
+  
+  .text-gradient-earth {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #51350C 0%, #925F42 100%);
+  }
+  
+  .text-label {
+    @apply text-xs font-lato font-semibold uppercase tracking-[0.15em] text-beute-earth-medium;
+  }
+  
+  .text-caption {
+    @apply text-xs font-lato font-medium tracking-wide text-beute-taupe;
+  }
+  
+  /* ------------------------------------------
+     NAVIGATION
+     ------------------------------------------ */
+  .nav-link {
+    @apply relative font-lato font-medium text-sm text-beute-earth-deep
+           transition-colors duration-250 hover:text-beute-gold;
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-beute-gold 
+           transition-all duration-300 ease-out;
+  }
+  
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+  
+  .nav-link-active {
+    @apply text-beute-gold;
+  }
+  
+  .nav-link-active::after {
+    @apply w-full;
+  }
+  
+  /* ------------------------------------------
+     BADGES
+     ------------------------------------------ */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 
+           text-xs font-lato font-semibold uppercase tracking-wider rounded-full;
+  }
+  
+  .badge-gold {
+    @apply badge bg-beute-gold/10 text-beute-gold border border-beute-gold/30;
+  }
+  
+  .badge-rose {
+    @apply badge bg-beute-rose/10 text-beute-rose border border-beute-rose/30;
+  }
+  
+  .badge-olive {
+    @apply badge bg-beute-olive/10 text-beute-olive border border-beute-olive/30;
+  }
+  
+  .badge-success {
+    @apply badge bg-beute-success-pale text-beute-success border border-beute-success/30;
+  }
+  
+  /* ------------------------------------------
+     SECTIONS
+     ------------------------------------------ */
+  .section {
+    @apply py-20 lg:py-28 xl:py-32;
+  }
+  
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-20;
+  }
+  
+  .section-header {
+    @apply text-center max-w-3xl mx-auto mb-16;
+  }
+  
+  /* ------------------------------------------
+     PATTERNS & BACKGROUNDS
+     ------------------------------------------ */
+  .bg-leaf-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 Q35 20 30 35 Q25 20 30 5' fill='none' stroke='%23AC802A' stroke-width='0.5' opacity='0.08'/%3E%3Cpath d='M15 15 Q20 30 15 45' fill='none' stroke='%23AC802A' stroke-width='0.5' opacity='0.06'/%3E%3Cpath d='M45 15 Q50 30 45 45' fill='none' stroke='%23AC802A' stroke-width='0.5' opacity='0.06'/%3E%3C/svg%3E");
+  }
+  
+  .bg-dot-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1' fill='%2351350C' opacity='0.03'/%3E%3C/svg%3E");
+  }
+  
+  .bg-gradient-cream {
+    background: linear-gradient(180deg, #FAEFE6 0%, #F6F2EF 100%);
+  }
+  
+  .bg-gradient-hero {
+    background: linear-gradient(135deg, rgba(250, 239, 230, 0.98) 0%, rgba(250, 239, 230, 0.85) 50%, transparent 100%);
+  }
+  
+  /* ------------------------------------------
+     DIVIDERS
+     ------------------------------------------ */
+  .divider {
+    @apply h-px bg-beute-taupe-light/50;
+  }
+  
+  .divider-gold {
+    @apply h-px bg-gradient-to-r from-transparent via-beute-gold to-transparent;
+  }
+  
+  .divider-vertical {
+    @apply w-px h-full bg-beute-taupe-light/50;
+  }
+  
+  /* ------------------------------------------
+     SCROLLBAR
+     ------------------------------------------ */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #D9CAC1 #F6F2EF;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #F6F2EF;
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #D9CAC1;
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #C9A961;
+  }
+  
+  /* ------------------------------------------
+     ANIMATIONS
+     ------------------------------------------ */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .animate-on-scroll.delay-100 { transition-delay: 100ms; }
+  .animate-on-scroll.delay-200 { transition-delay: 200ms; }
+  .animate-on-scroll.delay-300 { transition-delay: 300ms; }
+  .animate-on-scroll.delay-400 { transition-delay: 400ms; }
+  .animate-on-scroll.delay-500 { transition-delay: 500ms; }
+  
+  /* Shimmer effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(172, 128, 42, 0.1) 0%,
+      rgba(201, 169, 97, 0.2) 50%,
+      rgba(172, 128, 42, 0.1) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  /* ------------------------------------------
+     UTILITY CLASSES
+     ------------------------------------------ */
+  .glass {
+    @apply bg-white/80 backdrop-blur-xl;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+  
+  .glass-dark {
+    @apply bg-beute-earth-deep/90 backdrop-blur-xl;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Image hover zoom */
+  .img-zoom {
+    @apply overflow-hidden;
+  }
+  
+  .img-zoom img {
+    @apply transition-transform duration-700 ease-out;
+  }
+  
+  .img-zoom:hover img {
+    @apply scale-105;
+  }
+  
+  /* Aspect ratios */
+  .aspect-portrait {
+    aspect-ratio: 3 / 4;
+  }
+  
+  .aspect-golden {
+    aspect-ratio: 1.618 / 1;
+  }
+}
+
+/* --------------------------------------------
+   SCROLLBAR - Global
+   -------------------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F6F2EF;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D9CAC1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C9A961;
+}
+
+/* --------------------------------------------
+   PRINT STYLES
+   -------------------------------------------- */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* --------------------------------------------
+   REDUCED MOTION
+   -------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

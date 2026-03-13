@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dental Bot - Panel de Administración</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <i class="fas fa-tooth"></i>
+          <span>Dental Bot</span>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-item active">
+          <i class="fas fa-home"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="pages/appointments.html" class="nav-item">
+          <i class="fas fa-calendar-check"></i>
+          <span>Citas</span>
+        </a>
+        <a href="pages/patients.html" class="nav-item">
+          <i class="fas fa-users"></i>
+          <span>Pacientes</span>
+        </a>
+        <a href="pages/calendar.html" class="nav-item">
+          <i class="fas fa-calendar-alt"></i>
+          <span>Calendario</span>
+        </a>
+        <a href="pages/messages.html" class="nav-item">
+          <i class="fas fa-comments"></i>
+          <span>Mensajes</span>
+        </a>
+        <a href="pages/services.html" class="nav-item">
+          <i class="fas fa-list"></i>
+          <span>Servicios</span>
+        </a>
+        <a href="pages/settings.html" class="nav-item">
+          <i class="fas fa-cog"></i>
+          <span>Configuración</span>
+        </a>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar">
+            <i class="fas fa-user-md"></i>
+          </div>
+          <div class="user-details">
+            <span class="user-name">Admin</span>
+            <span class="user-role">Clínica Dental</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+        <button class="menu-toggle" id="menuToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="header-right">
+          <button class="theme-toggle" id="themeToggle" title="Cambiar tema">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+          </button>
+          <div class="notifications">
+            <button class="btn-icon" id="notificationBtn" data-tooltip="Notificaciones">
+              <i class="fas fa-bell"></i>
+              <span class="badge" id="notificationBadge">0</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Content -->
+      <div class="content">
+        <div class="page-header">
+          <h1>Dashboard</h1>
+          <p class="subtitle">Resumen general de la clínica</p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid stagger-list">
+          <div class="stat-card">
+            <div class="stat-icon bg-blue">
+              <i class="fas fa-calendar-day"></i>
+            </div>
+            <div class="stat-info">
+              <h3 id="todayAppointments">0</h3>
+              <p>Citas Hoy</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon bg-green">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-info">
+              <h3 id="confirmedAppointments">0</h3>
+              <p>Confirmadas</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon bg-orange">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-info">
+              <h3 id="pendingAppointments">0</h3>
+              <p>Pendientes</p>
+            </div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon bg-purple">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-info">
+              <h3 id="totalPatients">0</h3>
+              <p>Total Pacientes</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="dashboard-grid">
+          <!-- Today's Appointments -->
+          <div class="card">
+            <div class="card-header">
+              <h2><i class="fas fa-calendar-day"></i> Citas de Hoy</h2>
+              <a href="pages/appointments.html" class="btn btn-sm">Ver todas</a>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table" id="todayTable">
+                  <thead>
+                    <tr>
+                      <th>Hora</th>
+                      <th>Paciente</th>
+                      <th>Servicio</th>
+                      <th>Estado</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="empty-state">
+                      <td colspan="5">
+                        <div class="empty-message">
+                          <i class="fas fa-inbox"></i>
+                          <p>No hay citas para hoy</p>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Messages -->
+          <div class="card">
+            <div class="card-header">
+              <h2><i class="fas fa-comments"></i> Mensajes Recientes</h2>
+              <a href="pages/messages.html" class="btn btn-sm">Ver todos</a>
+            </div>
+            <div class="card-body">
+              <div class="message-list" id="recentMessages">
+                <div class="empty-state">
+                  <i class="fas fa-inbox"></i>
+                  <p>No hay mensajes recientes</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="dashboard-grid" style="margin-bottom: 1.5rem;">
+          <div class="card">
+            <div class="card-header">
+              <h2><i class="fas fa-chart-pie"></i> Citas por Estado</h2>
+            </div>
+            <div class="card-body">
+              <canvas id="appointmentsChart" height="250"></canvas>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-header">
+              <h2><i class="fas fa-chart-bar"></i> Citas por Canal</h2>
+            </div>
+            <div class="card-body">
+              <canvas id="channelsChart" height="250"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming Appointments -->
+        <div class="card">
+          <div class="card-header">
+            <h2><i class="fas fa-calendar-week"></i> Próximas Citas</h2>
+            <a href="pages/appointments.html" class="btn btn-sm">Ver todas</a>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table" id="upcomingTable">
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Paciente</th>
+                    <th>Servicio</th>
+                    <th>Canal</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="empty-state">
+                    <td colspan="6">
+                      <div class="empty-message">
+                        <i class="fas fa-inbox"></i>
+                        <p>No hay citas próximas</p>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Mobile Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Appointment Modal -->
+  <div class="modal" id="appointmentModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Detalles de la Cita</h3>
+        <button class="modal-close" id="closeModal">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Content loaded dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
