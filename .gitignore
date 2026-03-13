@@ -46,3 +46,10 @@ coverage
 *.pem
 *.crt
 *.key
+
+# Large files (Brand Board)
+*.ai
+*.pdf
+*.zip
+Beauté\ Brand\ Board/
+DRA_Meyryn.jpg
