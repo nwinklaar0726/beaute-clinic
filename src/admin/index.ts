@@ -2,7 +2,7 @@
 export { AdminLayout } from './components/AdminLayout'
 export { Sidebar } from './components/Sidebar'
 export { Header } from './components/Header'
-export { StatCard, MiniStat } from './components/StatCard'
+export { StatCard } from './components/StatCard'
 
 // Pages
 export { DashboardPage } from './pages/Dashboard'
