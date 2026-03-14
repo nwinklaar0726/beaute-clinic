@@ -1,5 +1,5 @@
+import { Outlet } from '@tanstack/react-router'
 import { Toaster } from '@/components/ui/sonner'
-import { QueryProvider } from '@/providers/QueryProvider'
 import { Navigation } from '@/sections/Navigation'
 import { Hero } from '@/sections/Hero'
 import { Services } from '@/sections/Services'
@@ -11,41 +11,49 @@ import { Footer } from '@/sections/Footer'
 /**
  * BEAUTÉ - PLATAFORMA INTEGRAL DE ESTÉTICA Y NUTRICIÓN
  * 
- * Arquitectura con TanStack:
- * - TanStack Query: Gestión de estado del servidor
- * - TanStack Table: Tablas de datos (admin)
- * - React: UI components
- * 
- * Dra. Meyryn Carrillo | Costa Rica
+ * Landing Page Component - Ruta raíz "/"
  */
-
-function App() {
+function LandingPage() {
   return (
-    <QueryProvider>
-      <div className="min-h-screen bg-beute-cream">
-        <Toaster 
-          position="top-center"
-          toastOptions={{
-            style: {
-              fontFamily: 'Lato, sans-serif',
-            },
-          }}
-        />
-        
-        <Navigation />
-        
-        <main>
-          <Hero />
-          <Services />
-          <BeautyBar />
-          <About />
-          <BookingWizard />
-        </main>
-        
-        <Footer />
-      </div>
-    </QueryProvider>
+    <>
+      <Toaster 
+        position="top-center"
+        toastOptions={{
+          style: {
+            fontFamily: 'Lato, sans-serif',
+          },
+        }}
+      />
+      
+      <Navigation />
+      
+      <main>
+        <Hero />
+        <Services />
+        <BeautyBar />
+        <About />
+        <BookingWizard />
+      </main>
+      
+      <Footer />
+    </>
   )
 }
 
+/**
+ * App Component
+ * 
+ * Este componente se usa para la ruta raíz.
+ * Las rutas hijas (como /admin) se renderizan a través de Outlet.
+ */
+function App() {
+  return (
+    <div className="min-h-screen bg-beute-cream">
+      <Outlet />
+    </div>
+  )
+}
+
+// Export LandingPage para usarlo en routes
+export { LandingPage }
 export default App
