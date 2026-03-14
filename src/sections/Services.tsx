@@ -120,7 +120,7 @@ export function Services({ onBookService }: ServicesProps = {}) {
             onClick={() => setSelectedService(service)}
           >
             {/* Image */}
-            <div className="relative h-64 overflow-hidden">
+            <div className="relative aspect-[4/3] overflow-hidden">
               <img 
                 src={service.image} 
                 alt={service.title} 
@@ -201,7 +201,7 @@ export function Services({ onBookService }: ServicesProps = {}) {
             
             <div className="grid md:grid-cols-2">
               {/* Image */}
-              <div className="relative h-64 md:h-auto">
+              <div className="relative aspect-[16/9] md:aspect-auto md:h-full overflow-hidden">
                 <img 
                   src={selectedService.image} 
                   alt={selectedService.title} 

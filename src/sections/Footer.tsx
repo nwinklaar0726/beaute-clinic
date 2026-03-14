@@ -70,7 +70,7 @@ export function Footer() {
 
       <div className="section-padding relative z-10">
         {/* Main Footer Content */}
-        <div className="py-16 grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="py-12 md:py-16 grid md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
@@ -175,7 +175,7 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-beute-gold flex-shrink-0 mt-0.5" />
-                <span className="text-beute-taupe-light text-sm">
+                <span className="text-beute-taupe-light text-xs sm:text-sm">
                   San José, Costa Rica
                 </span>
               </li>
@@ -246,7 +246,7 @@ export function Footer() {
       {/* Scroll to Top Button */}
       <button 
         onClick={scrollToTop} 
-        className="fixed bottom-8 right-8 w-12 h-12 bg-beute-gold rounded-full shadow-gold flex items-center justify-center hover:bg-beute-gold-dark hover:scale-110 transition-all duration-250 z-50 group"
+        className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 w-10 h-10 sm:w-12 sm:h-12 bg-beute-gold rounded-full shadow-gold flex items-center justify-center hover:bg-beute-gold-dark hover:scale-110 transition-all duration-250 z-50 group"
         aria-label="Volver arriba"
       >
         <ArrowUp className="w-5 h-5 text-white group-hover:-translate-y-0.5 transition-transform" />

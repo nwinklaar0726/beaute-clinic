@@ -85,7 +85,7 @@ export function About() {
       </div>
 
       {/* Main Content - Doctor Profile */}
-      <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24">
+      <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-16 md:mb-20 lg:mb-24">
         {/* Image Column */}
         <div className="relative">
           {/* Main Image */}
@@ -103,7 +103,7 @@ export function About() {
           <div className="absolute -top-6 -left-6 w-32 h-32 bg-beute-gold/10 rounded-full -z-10 hidden lg:block" />
           
           {/* Experience Badge */}
-          <div className="absolute bottom-8 left-8 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-soft">
+          <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-soft">
             <div className="flex items-center gap-3">
               <div className="w-14 h-14 rounded-full bg-beute-gold flex items-center justify-center shadow-gold">
                 <span className="font-dream text-2xl text-white">+10</span>
@@ -118,7 +118,7 @@ export function About() {
 
         {/* Content Column */}
         <div className="lg:pl-8">
-          <h3 className="font-dream text-3xl text-beute-earth-deep mb-4">
+          <h3 className="font-dream text-2xl md:text-3xl text-beute-earth-deep mb-4">
             Medicina Estética con Propósito
           </h3>
           
@@ -160,7 +160,7 @@ export function About() {
       </div>
 
       {/* Credentials Section */}
-      <div className="grid md:grid-cols-3 gap-6 mb-24">
+      <div className="grid md:grid-cols-3 gap-4 md:gap-6 mb-16 md:mb-20 lg:mb-24">
         {credentials.map((cred, index) => (
           <CardLuxury 
             key={cred.title} 
@@ -201,7 +201,7 @@ export function About() {
         </h3>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-3 gap-4 md:gap-6">
         {testimonials.map((testimonial, index) => (
           <CardLuxury 
             key={testimonial.name} 

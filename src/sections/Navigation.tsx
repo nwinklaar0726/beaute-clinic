@@ -29,6 +29,18 @@ export function Navigation({ onBook }: NavigationProps = {}) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('inicio')
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
+
   // Handle scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -183,10 +195,18 @@ export function Navigation({ onBook }: NavigationProps = {}) {
           </button>
         </nav>
 
+        {/* Mobile Menu Backdrop */}
+        {isOpen && (
+          <div 
+            className="lg:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-[-1]"
+            onClick={() => setIsOpen(false)}
+          />
+        )}
+        
         {/* Mobile Menu */}
         <div 
           className={cn(
-            "lg:hidden overflow-hidden transition-all duration-350 ease-out",
+            "lg:hidden overflow-hidden transition-all duration-350 ease-out relative",
             isOpen ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
           )}
         >

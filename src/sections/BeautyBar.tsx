@@ -83,7 +83,7 @@ export function BeautyBar({ onBookService }: BeautyBarProps = {}) {
       </div>
 
       {/* Services - Alternating Layout */}
-      <div className="space-y-20">
+      <div className="space-y-12 md:space-y-16 lg:space-y-20">
         {beautyServices.map((service, index) => (
           <div 
             key={service.id}
@@ -137,7 +137,7 @@ export function BeautyBar({ onBookService }: BeautyBarProps = {}) {
               </span>
               
               {/* Title */}
-              <h3 className="font-dream text-3xl lg:text-4xl text-beute-earth-dark mb-2">
+              <h3 className="font-dream text-2xl sm:text-3xl lg:text-4xl text-beute-earth-dark mb-2">
                 {service.title}
               </h3>
               <p className="text-beute-gold font-medium mb-4">{service.subtitle}</p>
@@ -188,7 +188,7 @@ export function BeautyBar({ onBookService }: BeautyBarProps = {}) {
       </div>
 
       {/* Features Grid */}
-      <div className="mt-24">
+      <div className="mt-16 md:mt-20 lg:mt-24">
         <CardLuxury variant="glass" padding="xl" className="border border-beute-gold/10">
           <div className="grid md:grid-cols-3 gap-8">
             {features.map((feature) => {
@@ -206,10 +206,10 @@ export function BeautyBar({ onBookService }: BeautyBarProps = {}) {
                   )}>
                     <feature.icon className="w-8 h-8" />
                   </div>
-                  <h4 className="font-dream text-xl text-beute-earth-dark mb-3">
+                  <h4 className="font-dream text-lg sm:text-xl text-beute-earth-dark mb-3">
                     {feature.title}
                   </h4>
-                  <p className="text-sm text-beute-earth-medium font-light">
+                  <p className="text-xs sm:text-sm text-beute-earth-medium font-light">
                     {feature.description}
                   </p>
                 </div>

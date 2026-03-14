@@ -200,11 +200,13 @@ export function Booking({ showNotification, initialService }: BookingProps = {})
                       {isCompleted ? <Check className="w-5 h-5" /> : s.number}
                     </div>
                     
-                    {/* Step label */}
-                    <div className="hidden sm:block mt-2 text-center">
+                    {/* Step label - show current step on mobile */}
+                    <div className="mt-2 text-center">
                       <span className={cn(
-                        "text-xs font-medium block",
-                        isActive || isCompleted ? "text-beute-earth-dark" : "text-beute-taupe"
+                        "text-[10px] sm:text-xs font-medium block",
+                        isActive || isCompleted ? "text-beute-earth-dark" : "text-beute-taupe",
+                        // Only show active step title on mobile to save space
+                        !isActive && "hidden sm:block"
                       )}>
                         {s.title}
                       </span>
@@ -217,7 +219,7 @@ export function Booking({ showNotification, initialService }: BookingProps = {})
                   {/* Connector line */}
                   {i < steps.length - 1 && (
                     <div className={cn(
-                      "w-8 sm:w-16 lg:w-24 h-0.5 mx-2 sm:mx-4 transition-all duration-300",
+                      "w-4 sm:w-8 md:w-16 lg:w-24 h-0.5 mx-1 sm:mx-2 md:mx-4 transition-all duration-300",
                       step > s.number ? "bg-beute-gold" : "bg-beute-taupe-light"
                     )} />
                   )}

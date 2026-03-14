@@ -146,8 +146,8 @@ export function Hero({ onBook, onExplore }: HeroProps = {}) {
           {/* Right Image - Dra. Meyryn */}
           <div className="order-1 lg:order-2 relative">
             {/* Decorative elements */}
-            <div className="absolute -top-4 -left-4 w-24 h-24 bg-beute-gold/20 rounded-full blur-2xl" />
-            <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-beute-rose/20 rounded-full blur-2xl" />
+            <div className="absolute -top-4 -left-2 sm:-left-4 w-24 h-24 bg-beute-gold/20 rounded-full blur-2xl" />
+            <div className="absolute -bottom-4 -right-2 sm:-right-4 w-32 h-32 bg-beute-rose/20 rounded-full blur-2xl" />
             
             {/* Main Image Container */}
             <div className="relative">
@@ -167,9 +167,9 @@ export function Hero({ onBook, onExplore }: HeroProps = {}) {
                 <div className="absolute inset-0 bg-gradient-to-t from-beute-earth-deep/40 via-transparent to-transparent" />
                 
                 {/* Name badge */}
-                <div className="absolute bottom-6 left-6 right-6">
+                <div className="absolute bottom-6 left-4 right-4 sm:left-6 sm:right-6">
                   <div className="bg-white/95 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-soft">
-                    <p className="font-dream text-2xl text-beute-earth-deep">Dra. Meyryn Carrillo</p>
+                    <p className="font-dream text-xl sm:text-2xl text-beute-earth-deep">Dra. Meyryn Carrillo</p>
                     <p className="text-beute-gold font-medium text-sm">Medicina Estética & Nutrición</p>
                   </div>
                 </div>
@@ -183,7 +183,7 @@ export function Hero({ onBook, onExplore }: HeroProps = {}) {
               
               {/* Floating badge - Patients */}
               <div className="absolute top-8 -right-4 bg-white rounded-2xl px-4 py-3 shadow-soft border border-beute-gold/20">
-                <p className="font-dream text-2xl text-beute-gold">+5K</p>
+                <p className="font-dream text-xl sm:text-2xl text-beute-gold">+5K</p>
                 <p className="text-beute-earth-medium text-xs">Pacientes</p>
               </div>
             </div>
