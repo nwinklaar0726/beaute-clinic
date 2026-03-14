@@ -1,16 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowRight, Play, Volume2, VolumeX, Pause } from 'lucide-react'
+import { ArrowRight, Play, Volume2, VolumeX, Pause, ChevronRight } from 'lucide-react'
 import { ButtonLuxury } from '@/components/ui/button-luxury'
 
 /**
- * BEAUTÉ HERO SECTION - VIDEO/IMAGE BACKGROUND
+ * BEAUTÉ HERO SECTION - VIDEO/IMAGE BACKGROUND WITH SERVICES
  * 
  * Hero estilo Bellas Place con:
- * - Video de fondo con fallback a imagen
- * - Overlay oscuro degradado para legibilidad
- * - Controles de video (play/pause, mute/unmute)
- * - Animaciones suaves al cargar
- * - Diseño responsive optimizado
+ * - Video/imagen de fondo
+ * - Servicios destacados con imágenes
+ * - Overlay oscuro degradado
+ * - Controles de video
  */
 
 interface HeroVideoProps {
@@ -18,6 +17,28 @@ interface HeroVideoProps {
   videoSrc?: string
   posterSrc?: string
 }
+
+// Servicios destacados para mostrar en el Hero
+const featuredServices = [
+  {
+    id: 1,
+    name: 'Aparatología Avanzada',
+    image: '/images/aparatologia.jpg',
+    description: 'Tecnología de punta para resultados visibles',
+  },
+  {
+    id: 2,
+    name: 'Medicina Estética',
+    image: '/images/medicina-estetica.jpg',
+    description: 'Tratamientos médicos personalizados',
+  },
+  {
+    id: 3,
+    name: 'Nutrición Clínica',
+    image: '/images/nutricion.jpg',
+    description: 'Planes nutricionales integrales',
+  },
+]
 
 export function HeroVideo({ 
   onBook, 
@@ -28,6 +49,7 @@ export function HeroVideo({
   const [isPlaying, setIsPlaying] = useState(true)
   const [isLoaded, setIsLoaded] = useState(false)
   const [hasVideo, setHasVideo] = useState(true)
+  const [activeService, setActiveService] = useState(0)
   const videoRef = useRef<HTMLVideoElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   
@@ -43,7 +65,15 @@ export function HeroVideo({
     return () => clearTimeout(timer)
   }, [])
 
-  // Parallax effect on scroll
+  // Auto-rotate services
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveService((prev) => (prev + 1) % featuredServices.length)
+    }, 4000)
+    return () => clearInterval(timer)
+  }, [])
+
+  // Parallax effect
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return
@@ -85,11 +115,10 @@ export function HeroVideo({
     <section 
       id="inicio" 
       ref={sectionRef}
-      className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden"
     >
-      {/* Background Layer - Image/Video */}
+      {/* Background Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Image Background (Fallback) */}
         <div 
           className="parallax-bg absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
           style={{ 
@@ -98,7 +127,6 @@ export function HeroVideo({
           }}
         />
         
-        {/* Video Layer */}
         {hasVideo && (
           <video
             ref={videoRef}
@@ -115,123 +143,174 @@ export function HeroVideo({
           </video>
         )}
         
-        {/* Dark Overlays for better text readability */}
-        {/* Base dark layer */}
-        <div className="absolute inset-0 bg-black/40" />
-        
-        {/* Gradient from top - darker at top for navigation */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/60" />
-        
-        {/* Side gradients for depth */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
-        
-        {/* Gold tint overlay */}
-        <div className="absolute inset-0 bg-beute-earth-deep/10 mix-blend-overlay" />
-      </div>
-
-      {/* Floating Particles */}
-      <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-beute-gold/30 rounded-full animate-float"
-            style={{
-              left: `${10 + Math.random() * 80}%`,
-              top: `${10 + Math.random() * 80}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${6 + Math.random() * 4}s`,
-            }}
-          />
-        ))}
+        {/* Overlays */}
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 text-center">
-        <div className={`transition-all duration-1000 ease-out 
-                        ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-24 pb-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           
-          {/* Tagline Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full 
-                          bg-white/10 backdrop-blur-md border border-white/20 mb-8">
-            <span className="w-2 h-2 bg-beute-gold rounded-full animate-pulse" />
-            <span className="text-white/90 text-sm font-medium tracking-wide">
-              Dra. Meyryn Carrillo
-            </span>
-            <span className="text-white/40">|</span>
-            <span className="text-white/70 text-sm hidden sm:inline">
-              Estética & Nutrición Integral
-            </span>
-          </div>
-
-          {/* Main Title */}
-          <h1 className="font-dream text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl
-                         text-white leading-[1] mb-6 tracking-tight">
-            <span className="block">Realza tu</span>
-            <span className="block text-beute-gold mt-2">Belleza Natural</span>
-          </h1>
-
-          {/* Subtitle */}
-          <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 
-                        font-light leading-relaxed px-4">
-            Descubre el equilibrio perfecto entre <span className="text-white font-normal">ciencia médica</span> y 
-            <span className="text-white font-normal"> bienestar spa</span>. Tratamientos exclusivos 
-            para una transformación real.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <ButtonLuxury 
-              variant="primary" 
-              size="xl"
-              onClick={onBook || (() => scrollToSection('#agendar'))}
-              rightIcon={<ArrowRight className="w-5 h-5" />}
-              className="w-full sm:w-auto min-w-[220px] bg-beute-gold hover:bg-beute-gold-light 
-                        text-white border-0 shadow-[0_4px_20px_rgba(172,128,42,0.4)]
-                        hover:shadow-[0_6px_30px_rgba(172,128,42,0.6)] transition-all"
-            >
-              Reserva tu Cita
-            </ButtonLuxury>
+          {/* Left Content */}
+          <div className={`text-center lg:text-left transition-all duration-1000 ease-out 
+                          ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             
-            <button 
-              onClick={() => scrollToSection('#servicios')}
-              className="group flex items-center gap-2 px-6 py-3.5 rounded-full
-                        bg-white/10 backdrop-blur-sm border border-white/30
-                        text-white font-medium hover:bg-white/20 
-                        transition-all w-full sm:w-auto justify-center"
-            >
-              <span>Ver Servicios</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full 
+                            bg-white/10 backdrop-blur-md border border-white/20 mb-6">
+              <span className="w-2 h-2 bg-beute-gold rounded-full animate-pulse" />
+              <span className="text-white/90 text-sm font-medium">
+                Dra. Meyryn Carrillo
+              </span>
+            </div>
+
+            {/* Title */}
+            <h1 className="font-dream text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+                           text-white leading-[1] mb-6">
+              <span className="block">Realza tu</span>
+              <span className="block text-beute-gold mt-2">Belleza Natural</span>
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-base sm:text-lg text-white/80 max-w-xl mx-auto lg:mx-0 mb-8 
+                          font-light leading-relaxed">
+              Descubre el equilibrio perfecto entre <span className="text-white">ciencia médica</span> y 
+              <span className="text-white"> bienestar spa</span>.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4 mb-10">
+              <ButtonLuxury 
+                variant="primary" 
+                size="xl"
+                onClick={onBook || (() => scrollToSection('#agendar'))}
+                rightIcon={<ArrowRight className="w-5 h-5" />}
+                className="w-full sm:w-auto min-w-[200px] bg-beute-gold hover:bg-beute-gold-light 
+                          text-white border-0 shadow-[0_4px_20px_rgba(172,128,42,0.4)]"
+              >
+                Reserva tu Cita
+              </ButtonLuxury>
+              
+              <button 
+                onClick={() => scrollToSection('#servicios')}
+                className="flex items-center gap-2 px-6 py-3.5 rounded-full
+                          bg-white/10 backdrop-blur-sm border border-white/30
+                          text-white font-medium hover:bg-white/20 transition-all"
+              >
+                <span>Ver Servicios</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Stats */}
+            <div className="flex items-center justify-center lg:justify-start gap-8">
+              <div>
+                <p className="font-dream text-3xl text-white">+10</p>
+                <p className="text-white/60 text-xs uppercase">Años Exp.</p>
+              </div>
+              <div className="w-px h-10 bg-white/20" />
+              <div>
+                <p className="font-dream text-3xl text-white">+5K</p>
+                <p className="text-white/60 text-xs uppercase">Pacientes</p>
+              </div>
+              <div className="w-px h-10 bg-white/20" />
+              <div>
+                <p className="font-dream text-3xl text-white">98%</p>
+                <p className="text-white/60 text-xs uppercase">Satisfechos</p>
+              </div>
+            </div>
           </div>
 
-          {/* Stats Row */}
-          <div className={`grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto pt-8 
-                          border-t border-white/20 transition-all duration-1000 delay-300
-                          ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="text-center">
-              <p className="font-dream text-2xl sm:text-3xl md:text-4xl text-white mb-1">+10</p>
-              <p className="text-white/60 text-xs uppercase tracking-wider">Años Exp.</p>
+          {/* Right Content - Featured Services */}
+          <div className={`hidden lg:block transition-all duration-1000 delay-300
+                          ${isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+            <div className="relative">
+              {/* Main Service Image */}
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/5]">
+                <img 
+                  src={featuredServices[activeService].image}
+                  alt={featuredServices[activeService].name}
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                
+                {/* Service Info */}
+                <div className="absolute bottom-0 left-0 right-0 p-8">
+                  <p className="text-beute-gold text-sm font-medium mb-2 uppercase tracking-wider">
+                    Servicio Destacado
+                  </p>
+                  <h3 className="font-dream text-2xl text-white mb-2">
+                    {featuredServices[activeService].name}
+                  </h3>
+                  <p className="text-white/70 text-sm">
+                    {featuredServices[activeService].description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Service Thumbnails */}
+              <div className="flex gap-3 mt-4">
+                {featuredServices.map((service, index) => (
+                  <button
+                    key={service.id}
+                    onClick={() => setActiveService(index)}
+                    className={`relative flex-1 h-20 rounded-xl overflow-hidden transition-all ${
+                      activeService === index 
+                        ? 'ring-2 ring-beute-gold ring-offset-2 ring-offset-black/50' 
+                        : 'opacity-60 hover:opacity-80'
+                    }`}
+                  >
+                    <img 
+                      src={service.image}
+                      alt={service.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+
+              {/* Decorative Elements */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-beute-gold/30 rounded-full" />
+              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-beute-gold/10 rounded-full blur-2xl" />
             </div>
-            <div className="text-center border-x border-white/20">
-              <p className="font-dream text-2xl sm:text-3xl md:text-4xl text-white mb-1">+5K</p>
-              <p className="text-white/60 text-xs uppercase tracking-wider">Pacientes</p>
-            </div>
-            <div className="text-center">
-              <p className="font-dream text-2xl sm:text-3xl md:text-4xl text-white mb-1">98%</p>
-              <p className="text-white/60 text-xs uppercase tracking-wider">Satisfechos</p>
-            </div>
+          </div>
+        </div>
+
+        {/* Mobile Services Preview */}
+        <div className="lg:hidden mt-8">
+          <p className="text-white/60 text-sm uppercase tracking-wider mb-4 text-center">
+            Nuestros Servicios
+          </p>
+          <div className="flex gap-3 overflow-x-auto pb-4">
+            {featuredServices.map((service) => (
+              <div
+                key={service.id}
+                className="flex-shrink-0 w-40 rounded-xl overflow-hidden relative"
+              >
+                <img 
+                  src={service.image}
+                  alt={service.name}
+                  className="w-full h-32 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                <p className="absolute bottom-3 left-3 right-3 text-white text-sm font-medium">
+                  {service.name}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Video Controls - Only show if video is available */}
+      {/* Video Controls */}
       {hasVideo && (
-        <div className="absolute bottom-20 right-6 z-20 flex items-center gap-2">
+        <div className="absolute bottom-24 right-6 z-20 flex items-center gap-2">
           <button
             onClick={togglePlay}
             className="p-2.5 rounded-full bg-black/30 backdrop-blur-sm border border-white/20
                       text-white hover:bg-black/50 transition-all"
-            aria-label={isPlaying ? 'Pausar' : 'Reproducir'}
           >
             {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
           </button>
@@ -239,7 +318,6 @@ export function HeroVideo({
             onClick={toggleMute}
             className="p-2.5 rounded-full bg-black/30 backdrop-blur-sm border border-white/20
                       text-white hover:bg-black/50 transition-all"
-            aria-label={isMuted ? 'Activar sonido' : 'Silenciar'}
           >
             {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
           </button>
@@ -250,8 +328,7 @@ export function HeroVideo({
       <button 
         onClick={() => scrollToSection('#servicios')}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 
-                   flex flex-col items-center gap-2 text-white/50 
-                   hover:text-white transition-colors"
+                   flex flex-col items-center gap-2 text-white/50 hover:text-white transition-colors"
       >
         <span className="text-xs uppercase tracking-[0.2em]">Scroll</span>
         <div className="w-5 h-8 rounded-full border-2 border-current flex items-start justify-center p-1">
@@ -259,24 +336,8 @@ export function HeroVideo({
         </div>
       </button>
 
-      {/* Decorative Elements */}
+      {/* Bottom Gradient */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-beute-cream to-transparent z-10" />
-
-      <style>{`
-        @keyframes float {
-          0%, 100% { 
-            transform: translateY(0) translateX(0); 
-            opacity: 0.3;
-          }
-          50% { 
-            transform: translateY(-15px) translateX(5px); 
-            opacity: 0.6;
-          }
-        }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-      `}</style>
     </section>
   )
 }
