@@ -1,7 +1,7 @@
 import { Outlet } from '@tanstack/react-router'
 import { Toaster } from '@/components/ui/sonner'
 import { Navigation } from '@/sections/Navigation'
-import { Hero } from '@/sections/Hero'
+import { HeroVideo } from '@/sections/HeroVideo'
 import { Services } from '@/sections/Services'
 import { BeautyBar } from '@/sections/BeautyBar'
 import { About } from '@/sections/About'
@@ -28,7 +28,7 @@ function LandingPage() {
       <Navigation />
       
       <main>
-        <Hero />
+        <HeroVideo />
         <Services />
         <BeautyBar />
         <About />
