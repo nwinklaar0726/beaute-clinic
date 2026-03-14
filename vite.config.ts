@@ -1,24 +1,27 @@
 import path from "path"
 import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
-import { inspectAttr } from 'kimi-plugin-inspect-react'
 
 // https://vite.dev/config/
 export default defineConfig({
   base: './',
-  plugins: [inspectAttr(), react()],
+  plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
   server: {
+    // Allow access from network (for mobile testing)
+    host: '0.0.0.0',
+    port: 5173,
+    // Enable CORS for local network access
+    cors: true,
     proxy: {
       // Proxy API requests to the appointment-bot backend
       '/api': {
         target: process.env.VITE_API_URL || 'http://localhost:3000',
         changeOrigin: true,
-        // Don't rewrite path, keep /api prefix
       },
       '/webhook': {
         target: process.env.VITE_API_URL || 'http://localhost:3000',
@@ -38,4 +41,4 @@ export default defineConfig({
       },
     },
   },
-});
+})

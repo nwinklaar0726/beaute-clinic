@@ -1,201 +1,159 @@
-# Beauté - Clínica de Estética y Nutrición
+# Beauté Clínica - Dra. Meyryn Carrillo
 
-[![React](https://img.shields.io/badge/React-19.2-61DAFB?logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-7.3-646CFF?logo=vite)](https://vitejs.dev/)
-[![Tailwind](https://img.shields.io/badge/Tailwind-3.4-06B6D4?logo=tailwindcss)](https://tailwindcss.com/)
-[![TanStack Query](https://img.shields.io/badge/TanStack%20Query-5.67-FF4154?logo=reactquery)](https://tanstack.com/query)
-[![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-Latest-000000)](https://ui.shadcn.com/)
+Sistema de gestión de citas y administración para clínica de estética y nutrición.
 
-> **Sitio web profesional para Dra. Meyryn Carrillo - Clínica de medicina estética, nutrición y spa** 🌸
+## 🚀 Inicio Rápido
 
-## ✨ Características
+### Requisitos Previos
+- Node.js 18+ 
+- npm o pnpm
 
-- 🎨 **Diseño Luxury** - Implementación fiel del Brandbook con colores crema, dorado y tierra
-- 📱 **Totalmente Responsive** - Optimizado para móvil, tablet y desktop
-- ⚡ **Alto Rendimiento** - Vite + React 19 + Lazy Loading
-- 🔄 **TanStack Query** - Data fetching optimizado con caché y sincronización
-- 📊 **TanStack Table** - Tablas avanzadas con filtrado, ordenamiento y paginación
-- 🛣️ **TanStack Router** - Enrutamiento type-safe y eficiente
-- 🎭 **Animaciones Suaves** - Transiciones elegantes con Tailwind
-- 🔒 **Backend Integration** - Conectado a appointment-bot (Express.js + PostgreSQL)
-- 📅 **Sistema de Citas** - Reserva en línea con calendario interactivo
-- 🔔 **WhatsApp Reminders** - Recordatorios automáticos
-- 🔍 **SEO Optimizado** - Meta tags, sitemap y robots.txt
-
-## 🏗️ Arquitectura
-
-```
-src/
-├── components/           # Componentes UI reutilizables (shadcn/ui + custom)
-│   ├── ui/              # Componentes base de shadcn/ui
-│   ├── ButtonLuxury.tsx
-│   ├── CardLuxury.tsx
-│   └── ServiceCard.tsx
-├── features/            # Módulos por dominio (Feature-based architecture)
-│   ├── appointments/    # Gestión de citas
-│   │   ├── components/  # BookingWizard, AppointmentTable
-│   │   ├── hooks/       # useAppointments, useCreateAppointment
-│   │   └── types/       # Tipos TypeScript del dominio
-│   ├── dashboard/       # Panel administrativo
-│   │   └── hooks/
-│   └── services/        # Catálogo de servicios
-│       └── hooks/
-├── providers/           # React Context providers
-│   └── QueryProvider.tsx # TanStack Query configuration
-├── sections/            # Secciones de landing page
-│   ├── Hero.tsx
-│   ├── About.tsx
-│   ├── Services.tsx
-│   ├── BeautyBar.tsx
-│   ├── Booking.tsx
-│   └── Footer.tsx
-├── services/            # API clients
-│   └── api.ts           # Integración con appointment-bot
-├── shared/              # Código compartido
-│   ├── api/            # Cliente HTTP base
-│   └── types/          # Tipos globales
-├── hooks/               # Custom hooks generales
-├── lib/                 # Utilidades
-└── App.tsx             # Entry point
-```
-
-## 🎨 Sistema de Diseño
-
-### Colores (Brandbook)
-
-| Color | Hex | Uso |
-|-------|-----|-----|
-| Cream | `#FAEFE6` | Fondo principal |
-| Gold | `#AC802A` | Acentos, CTA, bordes |
-| Earth Deep | `#51350C` | Texto principal |
-| Rose | `#A97574` | Acentos secundarios |
-| Taupe | `#A48D82` | Texto secundario |
-
-### Tipografía
-
-- **Títulos**: Dream Orphans (serif elegante)
-- **Cuerpo**: Lato (sans-serif legible)
-
-## 🚀 Comandos
+### Instalación
 
 ```bash
 # Instalar dependencias
 npm install
 
-# Desarrollo local
+# Iniciar servidor de desarrollo (localhost)
 npm run dev
 
-# Verificación completa (types + build)
-npm run verify
-
-# Build para producción
-npm run build
-
-# Deploy a Vercel
-npm run deploy:vercel
+# Iniciar servidor en red (para acceder desde celular)
+npm run dev:network
 ```
 
-## 🔌 Backend Integration
+### Acceso desde Red Local
 
-El sitio se conecta a **appointment-bot** (backend en Express.js + PostgreSQL):
+1. Inicia el servidor con `npm run dev:network`
+2. El servidor se iniciará en `http://0.0.0.0:5173`
+3. Para acceder desde tu celular:
+   - Asegúrate de que tu celular esté en la misma red WiFi
+   - Obtén la IP de tu computadora: `ipconfig` (Windows) o `ifconfig` (Mac/Linux)
+   - En tu celular abre: `http://[TU_IP]:5173`
+   - Ejemplo: `http://192.168.1.100:5173`
 
-```typescript
-// API Endpoints disponibles
-GET  /api/services         # Listar servicios
-GET  /api/slots/available  # Horarios disponibles
-POST /api/appointments     # Crear cita
-GET  /api/dashboard/stats  # Estadísticas
+## 📁 Estructura del Proyecto
+
+```
+src/
+├── admin/                    # Panel de administración
+│   ├── components/           # Componentes reutilizables
+│   ├── pages/               # Páginas del admin
+│   ├── hooks/               # Hooks de datos
+│   └── types/               # Tipos TypeScript
+├── sections/                # Secciones del landing
+│   ├── HeroVideo.tsx       # Hero con video
+│   ├── Services.tsx        # Servicios
+│   ├── BeautyBar.tsx       # Beauty Bar
+│   ├── About.tsx           # Sobre nosotros
+│   └── BookingWizard.tsx   # Formulario de citas
+├── features/                # Funcionalidades
+│   ├── appointments/       # Gestión de citas
+│   └── services/           # Gestión de servicios
+├── components/ui/          # Componentes UI base
+└── shared/                 # Utilidades compartidas
 ```
 
-Configuración del proxy en `vite.config.ts`:
-```typescript
-server: {
-  proxy: {
-    '/api': {
-      target: 'http://localhost:3000',
-      changeOrigin: true
-    }
-  }
-}
+## 🔧 Configuración
+
+### Variables de Entorno
+
+Crea un archivo `.env.local`:
+
+```env
+VITE_API_URL=http://localhost:3000
 ```
 
-## 🛠️ Tech Stack
-
-| Categoría | Tecnología |
-|-----------|------------|
-| Framework | React 19.2 |
-| Language | TypeScript 5.9 |
-| Build Tool | Vite 7.3 |
-| Styling | Tailwind CSS 3.4 |
-| UI Components | shadcn/ui |
-| Data Fetching | TanStack Query 5.67 |
-| Tables | TanStack Table 8.21 |
-| Routing | TanStack Router 1.114 |
-| Icons | Lucide React |
-| Backend | Express.js + PostgreSQL |
-
-## 📁 Estructura de Features (TanStack Architecture)
-
-### Appointments Feature
-```typescript
-// src/features/appointments/hooks/useAppointments.ts
-export const useAppointmentsList = (filters?: AppointmentFilters) => {
-  return useQuery({
-    queryKey: ['appointments', filters],
-    queryFn: () => getAppointments(filters),
-    staleTime: 1000 * 60 * 5, // 5 minutos
-  });
-};
-
-export const useCreateAppointment = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: createAppointment,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['appointments'] });
-    },
-  });
-};
-```
-
-### Services Feature
-```typescript
-// src/features/services/hooks/useServices.ts
-export const useServices = () => {
-  return useQuery({
-    queryKey: ['services'],
-    queryFn: getServices,
-    staleTime: 1000 * 60 * 30, // 30 minutos (raramente cambian)
-  });
-};
-```
-
-## 🌐 Deployment
-
-### Vercel (Recomendado)
-
-```bash
-# Instalar Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel --prod
-```
-
-O conecta tu repositorio GitHub para deploys automáticos.
-
-### Configuración de Variables de Entorno
-
-```bash
-# .env.local
+Para producción:
+```env
 VITE_API_URL=https://api.beaute-clinic.com
 ```
 
+## 📱 Funcionalidades
+
+### Landing Page (Cliente)
+- Hero con video/imagen de fondo
+- Listado de servicios
+- Beauty Bar
+- Sobre la Dra. Meyryn
+- **Reserva de citas online** (wizard de 4 pasos)
+
+### Admin Dashboard
+- **Dashboard**: Estadísticas y citas recientes
+- **Citas**: Gestión completa de citas (CRUD)
+- **Pacientes**: Gestión de pacientes
+- **Servicios**: Gestión de servicios ofrecidos
+- **Reportes**: Análisis y estadísticas
+- **Configuración**: Ajustes del sistema
+
+## 🎨 Sistema de Diseño
+
+### Colores
+- **Gold**: `#AC802A` (Primary)
+- **Cream**: `#FAEFE6` (Background)
+- **Earth**: `#51350C` (Text)
+- **Rose**: `#A97574` (Accent)
+
+### Tipografía
+- **Títulos**: Dream Orphans
+- **Cuerpo**: Lato
+
+## 🔄 Integración con Backend
+
+El sistema está preparado para integrarse con el `appointment-bot`:
+
+### Endpoints Esperados
+- `GET /api/services` - Lista de servicios
+- `GET /api/slots/available?date=YYYY-MM-DD` - Horarios disponibles
+- `POST /api/appointments` - Crear cita
+- `GET /api/appointments` - Listar citas
+- `PATCH /api/appointments/:id` - Actualizar cita
+- `DELETE /api/appointments/:id` - Eliminar cita
+
+### Datos Mock
+Si el backend no está disponible, el sistema usa datos mock para demostración.
+
+## 🚀 Despliegue
+
+### Vercel
+```bash
+npm run deploy:vercel
+```
+
+### Construcción Manual
+```bash
+npm run build
+# Los archivos se generan en /dist
+```
+
+## 📋 Comandos Disponibles
+
+| Comando | Descripción |
+|---------|-------------|
+| `npm run dev` | Servidor de desarrollo localhost |
+| `npm run dev:network` | Servidor accesible desde red |
+| `npm run build` | Construir para producción |
+| `npm run preview` | Previsualizar build |
+| `npm run type-check` | Verificar tipos |
+| `npm run lint` | Ejecutar linter |
+
+## 🐛 Solución de Problemas
+
+### No se ven los servicios
+- Verifica que el hook `useServices` tenga `initialData`
+- Los datos mock se cargan automáticamente si el backend no responde
+
+### Error de CORS
+- Verifica la configuración del proxy en `vite.config.ts`
+- Asegúrate de que el backend permita requests desde el frontend
+
+### No carga el video del Hero
+- Coloca el video en `public/videos/beaute-hero.mp4`
+- El sistema usa imagen de fallback si no hay video
+
+## 👩‍💻 Autor
+
+**Dra. Meyryn Carrillo** - Clínica de Estética y Nutrición
+
 ## 📄 Licencia
 
-Proyecto privado - Clínica Beauté © 2025
-
----
-
-**Desarrollado con ❤️ para Dra. Meyryn Carrillo**
+Proyecto privado - Todos los derechos reservados.
